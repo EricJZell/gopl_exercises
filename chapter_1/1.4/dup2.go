@@ -1,4 +1,5 @@
-// this program prints duplicate lines, followed by the number of duplicates
+// This program finds duplicated lines. It prints the number of times the line
+// appears, and which files the lines are present in
 package main
 
 import (
