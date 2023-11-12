@@ -1,5 +1,5 @@
-//Lissanous generates GIF animations of random Lissajous figgures.
-// This produces green lines on a black background
+// Lissanous generates GIF animations of random Lissajous figgures.
+// This produces green lines and red lines on black background
 package main
 
 import (
@@ -12,11 +12,16 @@ import (
 	"os"
 )
 
-var palette = []color.Color{color.Black, color.RGBA{0x00, 0xFF, 0x00, 0xFF}}
+var palette = []color.Color{
+	color.RGBA{0x00, 0x00, 0x00, 0xFF},
+	color.RGBA{0x00, 0xFF, 0x00, 0xFF},
+	color.RGBA{0xFF, 0x00, 0x00, 0xFF},
+}
 
 const (
 	blackIndex = 0
 	greenIndex = 1
+	redIndex   = 2
 )
 
 func main() {
@@ -25,11 +30,11 @@ func main() {
 
 func lissajous(out io.Writer) {
 	const (
-		cycles = 5
-		res = 0.001
-		size = 100
+		cycles  = 5
+		res     = 0.001
+		size    = 100
 		nframes = 64
-		delay = 8
+		delay   = 8
 	)
 	freq := rand.Float64() * 3
 	anim := gif.GIF{LoopCount: nframes}
@@ -40,7 +45,11 @@ func lissajous(out io.Writer) {
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), greenIndex)
+			colorIndex := greenIndex
+			if t > 15 {
+				colorIndex = redIndex
+			}
+			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), uint8(colorIndex))
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
