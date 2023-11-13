@@ -1,3 +1,4 @@
-0.14s   11258 http://about.ericjzell.com
-0.18s   18646 http://google.com
-0.18s elapsed
+0.44s 1842380 http://nbc.com
+0.73s  432770 http://netflix.com
+0.90s  866247 http://youtube.com
+0.90s elapsed

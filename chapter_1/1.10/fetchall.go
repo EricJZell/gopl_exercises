@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"strings"
 )
 
 func main() {
@@ -28,8 +29,15 @@ func main() {
 	defer f.Close()
 }
 
+func prependHTTP(url *string) {
+	if !strings.HasPrefix(*url, "http://") && !strings.HasPrefix(*url, "https://") {
+		*url = "http://" + *url
+	}
+}
+
 func fetch(url string, ch chan<- string) {
 	start := time.Now()
+	prependHTTP(&url)
 	resp, err := http.Get(url)
 	if err != nil {
 		ch <- fmt.Sprint(err)

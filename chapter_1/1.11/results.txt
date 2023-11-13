@@ -1,0 +1,11 @@
+Get "http://nonexistentwebsite89898989898.com": dial tcp: lookup nonexistentwebsite89898989898.com: no such host0.18s   45604 http://bing.com
+0.20s   18572 http://google.com
+0.76s   89032 http://wikipedia.org
+0.80s  496755 http://reddit.com
+0.83s  865081 http://youtube.com
+0.89s    6591 http://amazon.com
+1.15s  111902 http://fandom.com
+1.42s 1379967 http://yahoo.com
+1.86s   59637 http://facebook.com
+2.45s  171132 http://twitter.com
+2.45s elapsed
